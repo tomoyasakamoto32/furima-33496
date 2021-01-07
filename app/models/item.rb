@@ -6,12 +6,13 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :preparation_day
   has_one_attached :image
+  belongs_to :user
 
   with_options presence: true do
     validates :image
     validates :name
     validates :explanation
-    validates :price, numericality:{ greater_than: 300, less_than: 10000000 }, format: {with: /\A[0-9]+\z/}
+    validates :price, numericality:{ greater_than: 299, less_than: 10000000 }, format: {with: /\A[0-9]+\z/}
   end
   
   with_options numericality: { other_than: 1 } do
