@@ -12,9 +12,9 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :explanation
-    validates :price, numericality:{ greater_than: 299, less_than: 10000000 }, format: {with: /\A[0-9]+\z/}
+    validates :price, numericality: { greater_than: 299, less_than: 10_000_000 }, format: { with: /\A[0-9]+\z/ }
   end
-  
+
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :condition_id
