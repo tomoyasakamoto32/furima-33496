@@ -48,7 +48,12 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Telephone number can't be blank")
       end
-      it 'telephone_numberが11桁以上だと登録できない' do
+      it 'telephone_numberが英数字混合では登録できない' do
+        @order_address.telephone_number = "123aaaabbbb"
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Telephone number is invalid")
+      end
+      it 'telephone_numberが12桁以上だと登録できない' do
         @order_address.telephone_number = "123456789012"
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Telephone number is invalid")
